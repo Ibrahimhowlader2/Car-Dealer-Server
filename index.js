@@ -32,7 +32,6 @@ async function run() {
             const product = req.body;
             const result = await productsCollection.insertOne(product);
             res.json(result);
-            console.log(result);
         })
 
         // Get All Products
@@ -60,7 +59,6 @@ async function run() {
         // Get my orders
 
         app.get("/myOrders/:email", async (req, res) => {
-            console.log(req.params.email);
             const result = await ordersCollection
                 .find({ email: req.params.email })
                 .toArray();
@@ -83,7 +81,6 @@ async function run() {
         app.post('/users', async (req, res) => {
             const user = req.body;
             const result = await usersCollection.insertOne(user);
-            console.log(result);
             res.json(result)
         });
 
@@ -114,13 +111,11 @@ async function run() {
             const result = await usersCollection
                 .find({ email: req.params.email })
                 .toArray();
-            console.log(result);
             res.send(result);
         });
 
         /// Get Manage All Orders
         app.get("/allOrders", async (req, res) => {
-            // console.log("hello");
             const result = await ordersCollection.find({}).toArray();
             res.send(result);
         });
@@ -130,7 +125,6 @@ async function run() {
         // status update
         app.put("/statusUpdate/:id", async (req, res) => {
             const filter = { _id: ObjectId(req.params.id) };
-            console.log(req.params.id);
             const result = await ordersCollection.updateOne(filter, {
                 $set: {
                     status: req.body.status,
@@ -169,7 +163,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get('/', (req, res) => {
-    res.send('Running assignment-twelve-server')
+    res.send('Running Car Dealer-server')
 })
 
 app.listen(port, () => {
