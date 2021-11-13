@@ -105,7 +105,7 @@ async function run() {
                 const documents = await usersCollection.updateOne(filter, {
                     $set: { role: "admin" },
                 });
-                console.log(documents);
+               
             }
         });
 
